@@ -20,6 +20,9 @@ pubspec.lock
 .env*
 env.json
 
+# Private Files
+*flutter_human.js
+
 # Terminal
 *.zshrc
 
