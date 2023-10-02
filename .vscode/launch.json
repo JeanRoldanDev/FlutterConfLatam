@@ -7,7 +7,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main_dev.dart",
-            "args": ["--flavor", "development", "--target", "lib/main_dev.dart", "--web-port", "7357","--web-renderer", "html"]
+            "args": ["--flavor", "development", "--target", "lib/main_dev.dart", "--web-port", "7357","--web-renderer", "html", "--dart-define-from-file", "env.json"]
         },
         {
             "preLaunchTask": "build_flavor_web_production",
@@ -15,7 +15,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main_prod.dart",
-            "args": ["--flavor", "production", "--target", "lib/main_prod.dart", "--web-port", "7357","--web-renderer", "html"]
+            "args": ["--flavor", "production", "--target", "lib/main_prod.dart", "--web-port", "7357","--web-renderer", "html", "--dart-define-from-file", "env.json"]
         }
     ]
 }

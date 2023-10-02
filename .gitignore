@@ -13,9 +13,12 @@
 .pub/
 /build/
 pubspec.lock
+# Generate for Flavors
+/web/index.html
 
 # dotenv environment variables file
 .env*
+env.json
 
 # Terminal
 *.zshrc
