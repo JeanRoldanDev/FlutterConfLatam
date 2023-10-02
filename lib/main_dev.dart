@@ -10,12 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ama lo estoy logrando!!!!',
+      title: 'Flutter Conf 2023',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(),
+      home: const Scaffold(
+        body: Center(
+          child: Text('Development Mode'),
+        ),
+      ),
     );
   }
 }

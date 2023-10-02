@@ -1,25 +1,21 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutterconflatam",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "flutterconflatam (profile mode)",
+            "preLaunchTask": "build_flavor_web_dev",
+            "name": "Launch Development",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "development", "--target", "lib/main_dev.dart", "--web-port", "7357","--web-renderer", "html"]
         },
         {
-            "name": "flutterconflatam (release mode)",
+            "preLaunchTask": "build_flavor_web_production",
+            "name": "Launch Production",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "production", "--target", "lib/main_prod.dart", "--web-port", "7357","--web-renderer", "html"]
         }
     ]
 }

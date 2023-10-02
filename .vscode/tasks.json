@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_flavor_web_dev",
+            "type": "shell",
+            "command": "cp web/index_dev.html web/index.html",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "build_flavor_web_production",
+            "type": "shell",
+            "command": "cp web/index_prod.html web/index.html",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+    ]
+}
