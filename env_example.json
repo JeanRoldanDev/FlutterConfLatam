@@ -1,4 +1,5 @@
 {
     "BASE_URL": "https://www.host.com",
-    "API_KEY": "--Test--Value"
+    "API_KEY": "--Test--Value",
+    "SERVER_VIEW_3D_DENTAL_URL": "https://www.host.com"
 }
