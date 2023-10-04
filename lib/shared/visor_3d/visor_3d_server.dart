@@ -7,10 +7,12 @@ import 'package:flutterconflatam/shared/visor_3d/shims/dart_ui.dart' as ui;
 class Visor3DServer extends StatefulWidget {
   const Visor3DServer({
     required this.url,
+    required this.apiKey,
     super.key,
   });
 
   final String url;
+  final String apiKey;
 
   @override
   State<Visor3DServer> createState() => _Visor3DServerState();
@@ -21,8 +23,16 @@ class _Visor3DServerState extends State<Visor3DServer> {
 
   @override
   void initState() {
-    createVideoElement();
+    _metaToken();
+    _createVideoElement();
     super.initState();
+  }
+
+  void _metaToken() {
+    final meta = html.MetaElement()
+      ..content = widget.apiKey
+      ..name = 'secutiry-token-visor';
+    html.document.head?.append(meta);
   }
 
   html.DivElement _div() {
@@ -35,7 +45,7 @@ class _Visor3DServerState extends State<Visor3DServer> {
     return div;
   }
 
-  void createVideoElement() {
+  void _createVideoElement() {
     final divContent = html.DivElement();
     divContent.style.height = '100%';
     divContent.style.width = '100%';

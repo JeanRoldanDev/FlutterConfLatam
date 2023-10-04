@@ -1,6 +1,7 @@
 // ignore_for_file: cascade_invocations, unnecessary_lambdas, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutterconflatam/app/env.dart';
 import 'package:flutterconflatam/features/dental/widgets/menu_dental.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 
@@ -29,10 +30,11 @@ class DentalPage extends StatelessWidget {
                           const Text('Periodontogra'),
                           MenuDental(onTap: (value) {}),
                           Expanded(
-                            child: Container(
-                              color: Colors.red,
+                            child: Visor3DServer(
+                              apiKey: Env.instance.apiKey,
+                              url: Env.instance.serverView3dDentalURL,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
