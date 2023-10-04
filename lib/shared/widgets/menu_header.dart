@@ -14,10 +14,10 @@ class MenuHeader extends StatelessWidget {
       height: 60,
       color: CColors.background,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'JeanRoldanDev',
             style: TextStyle(
               color: Colors.white,
@@ -25,42 +25,8 @@ class MenuHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: CColors.backgroundLight,
-              borderRadius: BorderRadius.circular(60),
-            ),
-            child: const Row(
-              children: [
-                ItemMenu(
-                  assetsIcon: Imgs.iconDental,
-                  text: 'Periodontograma',
-                ),
-                SizedBox(width: 10),
-                ItemMenu(
-                  assetsIcon: Imgs.iconHeart,
-                  text: 'Cardiograma',
-                ),
-                SizedBox(width: 10),
-                ItemMenu(
-                  assetsIcon: Imgs.iconPhysiotherapy,
-                  text: 'Fisioterapia',
-                ),
-                SizedBox(width: 10),
-                ItemMenu(
-                  assetsIcon: Imgs.iconElectrocardiogram,
-                  text: 'Electrocardiograma',
-                ),
-                SizedBox(width: 10),
-                ItemMenu(
-                  assetsIcon: Imgs.iconSettings,
-                  text: 'Config',
-                ),
-              ],
-            ),
-          ),
-          const Row(
+          _MenuPrincipal(),
+          Row(
             children: [
               CircularIcon(
                 icon: CupertinoIcons.person_alt,
@@ -77,40 +43,35 @@ class MenuHeader extends StatelessWidget {
   }
 }
 
-class ItemMenu extends StatelessWidget {
-  const ItemMenu({
-    required this.assetsIcon,
-    required this.text,
-    super.key,
-  });
-
-  final String assetsIcon;
-  final String text;
+class _MenuPrincipal extends StatelessWidget {
+  const _MenuPrincipal();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      decoration: BoxDecoration(
-        color: CColors.background,
-        borderRadius: BorderRadius.circular(60),
-      ),
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            assetsIcon,
-            color: Colors.white,
-            width: 35,
+    final pa = MediaQuery.of(context).size.width * 0.03;
+    return const Padding(
+      padding: EdgeInsets.symmetric(),
+      child: Menu(
+        items: [
+          ItemMenu(
+            assetsIcon: Imgs.iconDental,
+            text: 'Periodontograma',
           ),
-          const SizedBox(width: 5),
-          Text(
-            text,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+          ItemMenu(
+            assetsIcon: Imgs.iconHeart,
+            text: 'Cardiograma',
+          ),
+          ItemMenu(
+            assetsIcon: Imgs.iconPhysiotherapy,
+            text: 'Fisioterapia',
+          ),
+          ItemMenu(
+            assetsIcon: Imgs.iconElectrocardiogram,
+            text: 'Electrocardiograma',
+          ),
+          ItemMenu(
+            assetsIcon: Imgs.iconSettings,
+            text: 'Config',
           ),
         ],
       ),
