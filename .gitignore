@@ -22,6 +22,8 @@ env.json
 
 # Private Files
 *flutter_human.js
+*sup_frontal/
+*sup_lingual/
 
 # Terminal
 *.zshrc
