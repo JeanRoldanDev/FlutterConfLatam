@@ -5,4 +5,6 @@ abstract class IHuman {
   Stream<Object3D> onSelect();
   Future<void> setXRay(bool status);
   Future<void> setEfectSelect(bool status);
+  Future<void> setObjectData(String objectId);
+  Future<void> delObject(String objectId);
 }

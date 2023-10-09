@@ -54,4 +54,26 @@ class HumanoImpl implements IHuman {
     final ev = status ? 'scene.enableHighlight' : 'scene.disableHighlight';
     await _humanJS!.callMethod('send', [ev, null]);
   }
+
+  @override
+  Future<void> setObjectData(String objectId) async {
+    final dartObject = <String, dynamic>{
+      'objectId': objectId,
+      'tintColor': <int>[0, 1, 0],
+      'brightness': 0.1,
+      'saturation': -0.5,
+      'contrast': 0.5,
+      'opacity': 1.0,
+    };
+
+    final jsonJS = js.JsObject.jsify(dartObject);
+    await _humanJS!.callMethod('send', ['scene.colorObject', jsonJS]);
+  }
+
+  @override
+  Future<void> delObject(String objectId) async {
+    final dartObject = <String, dynamic>{objectId: false};
+    final jsonJS = js.JsObject.jsify(dartObject);
+    await _humanJS!.callMethod('send', ['scene.showObjects', jsonJS]);
+  }
 }
