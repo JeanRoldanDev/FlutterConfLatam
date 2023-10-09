@@ -94,21 +94,28 @@ class _MenuState extends State<Menu> {
 
 class ItemMenu extends StatelessWidget {
   const ItemMenu({
-    required this.text,
+    this.text,
     this.active = false,
     this.assetsIcon,
+    this.icon,
     super.key,
   });
 
   final bool active;
   final String? assetsIcon;
-  final String text;
+  final String? text;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        if (icon != null)
+          Icon(
+            icon,
+            color: Colors.white,
+          ),
         if (assetsIcon != null)
           Image.asset(
             assetsIcon!,
@@ -116,12 +123,13 @@ class ItemMenu extends StatelessWidget {
             width: 35,
           ),
         if (assetsIcon != null) const SizedBox(width: 5),
-        Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
+        if (text != null)
+          Text(
+            text!,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           ),
-        ),
       ],
     );
   }

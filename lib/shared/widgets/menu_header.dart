@@ -48,33 +48,25 @@ class _MenuPrincipal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pa = MediaQuery.of(context).size.width * 0.03;
-    return const Padding(
-      padding: EdgeInsets.symmetric(),
-      child: Menu(
-        items: [
-          ItemMenu(
-            assetsIcon: Imgs.iconDental,
-            text: 'Periodontograma',
-          ),
-          ItemMenu(
-            assetsIcon: Imgs.iconHeart,
-            text: 'Cardiograma',
-          ),
-          ItemMenu(
-            assetsIcon: Imgs.iconPhysiotherapy,
-            text: 'Fisioterapia',
-          ),
-          ItemMenu(
-            assetsIcon: Imgs.iconElectrocardiogram,
-            text: 'Electrocardiograma',
-          ),
-          ItemMenu(
-            assetsIcon: Imgs.iconSettings,
-            text: 'Config',
-          ),
-        ],
-      ),
+    return const Menu(
+      items: [
+        ItemMenu(
+          assetsIcon: Imgs.iconDental,
+          text: 'Periodontograma',
+        ),
+        ItemMenu(
+          assetsIcon: Imgs.iconHeart,
+          text: 'Cardiograma',
+        ),
+        ItemMenu(
+          assetsIcon: Imgs.iconPhysiotherapy,
+          text: 'Fisioterapia',
+        ),
+        ItemMenu(
+          assetsIcon: Imgs.iconElectrocardiogram,
+          text: 'Electrocardiograma',
+        ),
+      ],
     );
   }
 }
