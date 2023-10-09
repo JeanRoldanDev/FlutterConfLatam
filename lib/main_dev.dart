@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterconflatam/app/app.dart';
-import 'package:flutterconflatam/core/human_sdk/human_interface.dart';
+import 'package:flutterconflatam/core/human_sdk/human.dart';
+import 'package:flutterconflatam/core/service/service.dart';
 import 'package:flutterconflatam/features/dental/dental_page.dart';
 
 void main() {
@@ -15,8 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<HumanSDK>(
-          create: (context) => HumanSDK(),
+        RepositoryProvider<IHuman>(
+          create: (context) => HumanoImpl(),
+        ),
+        RepositoryProvider<Services>(
+          create: (context) => Services(),
         ),
       ],
       child: MaterialApp(
