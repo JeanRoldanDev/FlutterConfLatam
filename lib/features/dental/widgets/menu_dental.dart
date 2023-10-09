@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterconflatam/shared/shared.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class MenuDental extends StatelessWidget {
   const MenuDental({
@@ -16,19 +17,16 @@ class MenuDental extends StatelessWidget {
       expanded: true,
       items: const [
         ItemMenu(
-          text: 'Item1',
+          icon: Symbols.ads_click_rounded,
+          text: 'Select',
         ),
         ItemMenu(
-          text: 'Item1',
+          icon: Symbols.radiology,
+          text: 'XRay',
         ),
         ItemMenu(
-          text: 'Item1',
-        ),
-        ItemMenu(
-          text: 'Item1',
-        ),
-        ItemMenu(
-          text: 'Item1',
+          icon: Symbols.remove,
+          text: 'Delete',
         ),
       ],
     );
