@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:flutterconflatam/app/style/ccolors.dart';
+import 'package:flutterconflatam/core/human_sdk/human_ui.dart';
+import 'package:flutterconflatam/shared/visor_3d/shims/dart_ui.dart' as ui;
+
+class Visor3DServer extends StatefulWidget {
+  const Visor3DServer({
+    required this.id,
+    required this.apiKey,
+    super.key,
+  });
+
+  final String apiKey;
+  final String id;
+
+  @override
+  State<Visor3DServer> createState() => _Visor3DServerState();
+}
+
+class _Visor3DServerState extends State<Visor3DServer> {
+  final globalKey = GlobalKey();
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+  void _init() {
+    HumanUI.setToken(widget.apiKey);
+    final ss = HumanUI.createView(widget.id);
+    ui.platformViewRegistry.registerViewFactory(
+      'visorView3DModel',
+      (_) => ss,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RepaintBoundary(
+      child: Container(
+        foregroundDecoration: BoxDecoration(
+          border: Border.all(
+            color: CColors.background,
+            width: 2,
+          ),
+        ),
+        child: const HtmlElementView(viewType: 'visorView3DModel'),
+      ),
+    );
+  }
+}
