@@ -30,6 +30,7 @@ class ItemsDataValue extends StatelessWidget {
             subText: 'Items',
             'Registros',
           ),
+          const SizedBox(height: 50),
           Expanded(
             child: ListViewRadius(
               itemCount: list.length,

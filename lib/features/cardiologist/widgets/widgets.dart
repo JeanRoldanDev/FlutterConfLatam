@@ -1,3 +1,2 @@
 export 'items_data_value.dart';
-export 'menu.dart';
-export 'visor.dart';
+export 'panel_visor_heart_3d.dart';
