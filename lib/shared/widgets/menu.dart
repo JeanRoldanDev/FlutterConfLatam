@@ -95,13 +95,11 @@ class _MenuState extends State<Menu> {
 class ItemMenu extends StatelessWidget {
   const ItemMenu({
     this.text,
-    this.active = false,
     this.assetsIcon,
     this.icon,
     super.key,
   });
 
-  final bool active;
   final String? assetsIcon;
   final String? text;
   final IconData? icon;

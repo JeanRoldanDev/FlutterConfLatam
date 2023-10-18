@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterconflatam/app/app.dart';
+import 'package:flutterconflatam/features/cardiologist/cardiologist_page.dart';
+import 'package:flutterconflatam/features/dental/dental_page.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 
 class MenuHeader extends StatelessWidget {
   const MenuHeader({
+    required this.menuActive,
     super.key,
   });
+
+  final int menuActive;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +19,10 @@ class MenuHeader extends StatelessWidget {
       height: 60,
       color: CColors.background,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             'JeanRoldanDev',
             style: TextStyle(
               color: Colors.white,
@@ -25,8 +30,8 @@ class MenuHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          _MenuPrincipal(),
-          Row(
+          _MenuPrincipal(menuActive: menuActive),
+          const Row(
             children: [
               CircularIcon(
                 icon: CupertinoIcons.person_alt,
@@ -44,12 +49,33 @@ class MenuHeader extends StatelessWidget {
 }
 
 class _MenuPrincipal extends StatelessWidget {
-  const _MenuPrincipal();
+  const _MenuPrincipal({required this.menuActive});
+
+  final int menuActive;
 
   @override
   Widget build(BuildContext context) {
-    return const Menu(
-      items: [
+    return Menu(
+      initialActive: menuActive,
+      onTap: (index) {
+        if (index == 0) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute<dynamic>(
+              builder: (context) => const DentalPage(),
+            ),
+          );
+        }
+        if (index == 1) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute<dynamic>(
+              builder: (context) => const CardiologistPage(),
+            ),
+          );
+        }
+      },
+      items: const [
         ItemMenu(
           assetsIcon: Imgs.iconDental,
           text: 'Periodontograma',
