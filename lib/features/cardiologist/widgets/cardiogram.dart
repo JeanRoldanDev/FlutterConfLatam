@@ -44,11 +44,40 @@ class _CardiogramState extends State<Cardiogram> {
     getDrawingVerticalLine: (value) {
       final status = value % 5 == 0;
       return FlLine(
-        color: status ? Colors.red : Colors.black,
+        color: status ? Colors.blue.withOpacity(0.5) : Colors.grey,
         strokeWidth: status ? 2 : 1,
       );
     },
     verticalInterval: 1,
+  );
+
+  final extraLinesData = ExtraLinesData(
+    horizontalLines: [
+      HorizontalLine(y: 2300, color: Colors.cyan),
+      HorizontalLine(y: 2000, color: Colors.cyan),
+    ],
+  );
+
+  final titlesData = FlTitlesData(
+    bottomTitles: const AxisTitles(),
+    topTitles: const AxisTitles(),
+    leftTitles: AxisTitles(
+      sideTitles: SideTitles(
+        showTitles: true,
+        reservedSize: 30,
+        getTitlesWidget: (value, meta) {
+          return Center(
+            child: Text(
+              meta.formattedValue,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.red,
+              ),
+            ),
+          );
+        },
+      ),
+    ),
   );
 
   @override
@@ -65,60 +94,44 @@ class _CardiogramState extends State<Cardiogram> {
     }
 
     return sinPoints.isNotEmpty
-        ? AspectRatio(
-            aspectRatio: 1.5,
-            child: LineChart(
-              LineChartData(
-                titlesData: const FlTitlesData(
-                  bottomTitles: AxisTitles(),
-                  topTitles: AxisTitles(),
-                ),
-                gridData: grid,
-                lineTouchData: const LineTouchData(enabled: false),
-                borderData: FlBorderData(show: false),
-                minY: minValue,
-                maxY: maxValue.clamp(2000, 2500),
-                minX: sinPoints.first.x,
-                maxX: sinPoints.last.x,
-                extraLinesData: ExtraLinesData(
-                  horizontalLines: [
-                    HorizontalLine(y: 2200),
-                    HorizontalLine(y: 2100),
+        ? ClipRRect(
+            child: AspectRatio(
+              aspectRatio: 1.5,
+              child: LineChart(
+                LineChartData(
+                  titlesData: titlesData,
+                  gridData: grid,
+                  lineTouchData: const LineTouchData(enabled: false),
+                  borderData: FlBorderData(show: false),
+                  minY: minValue,
+                  maxY: maxValue.clamp(2000, 2500),
+                  minX: sinPoints.first.x,
+                  maxX: sinPoints.last.x,
+                  extraLinesData: extraLinesData,
+                  lineBarsData: [
+                    LineChartBarData(
+                      dotData: const FlDotData(show: false),
+                      isCurved: true,
+                      curveSmoothness: 0.2,
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.red.withOpacity(0.5),
+                          Colors.white,
+                          Colors.white,
+                          Colors.red.withOpacity(0.5),
+                        ],
+                        stops: const [0.02, 0.10, 0.90, 0.98],
+                      ),
+                      barWidth: 3,
+                      spots: sinPoints,
+                    ),
                   ],
                 ),
-                lineBarsData: [
-                  LineChartBarData(
-                    color: Colors.black,
-                    dotData: const FlDotData(show: false),
-                    isCurved: true,
-                    curveSmoothness: 0.2,
-                    gradient: LinearGradient(
-                      colors: [Colors.red.withOpacity(0), Colors.black],
-                      stops: const [0.01, 0.1],
-                    ),
-                    barWidth: 3,
-                    spots: sinPoints,
-                  ),
-                ],
+                // duration: const Duration(milliseconds: 200),
+                // curve: Curves.easeInQuad,
               ),
-              // duration: const Duration(milliseconds: 120),
-              // curve: Curves.fastOutSlowIn,
             ),
           )
         : const SizedBox.shrink();
   }
-
-  FlTitlesData get titlesData2 => const FlTitlesData(
-        rightTitles: AxisTitles(),
-        topTitles: AxisTitles(),
-        bottomTitles: AxisTitles(),
-        leftTitles: AxisTitles(
-          axisNameSize: 0.1,
-          sideTitles: SideTitles(
-            reservedSize: 30,
-            showTitles: true,
-            interval: 1,
-          ),
-        ),
-      );
 }

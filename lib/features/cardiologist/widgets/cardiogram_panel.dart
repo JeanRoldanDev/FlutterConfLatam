@@ -9,9 +9,8 @@ class CardiogramPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
-      color: Colors.white,
       child: LayoutBuilder(
         builder: (context, box) {
           return SizedBox(
