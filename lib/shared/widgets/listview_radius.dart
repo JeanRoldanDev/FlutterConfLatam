@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class Item {
-  Item({required this.child, this.childPallette});
+  const Item({required this.child, this.childPallette});
 
   final Widget child;
   final Widget? childPallette;
