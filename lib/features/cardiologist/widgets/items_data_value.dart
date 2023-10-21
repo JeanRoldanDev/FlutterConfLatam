@@ -30,7 +30,7 @@ class ItemsDataValue extends StatelessWidget {
         children: [
           const LabelTitle(
             subText: 'Items',
-            'Registros',
+            'Registers',
           ),
           const SizedBox(height: 50),
           Expanded(
@@ -127,16 +127,19 @@ class ItemSPO extends StatelessWidget {
                     color: Colors.blueGrey.shade800,
                   ),
                 ),
-                const Row(
-                  children: [
-                    Text(
-                      '97%',
-                      style: TextStyle(
+                BlocBuilder<CardiologistBloc, CardiologistState>(
+                  buildWhen: (previous, current) {
+                    return current is HasResult;
+                  },
+                  builder: (context, state) {
+                    return Text(
+                      (state is HasResult) ? '${state.data.spo2}%' : '0.00%',
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ],
             ),
@@ -176,16 +179,19 @@ class ItemFrequency extends StatelessWidget {
                     color: Colors.blueGrey.shade800,
                   ),
                 ),
-                const Row(
-                  children: [
-                    Text(
-                      '0.92',
-                      style: TextStyle(
+                BlocBuilder<CardiologistBloc, CardiologistState>(
+                  buildWhen: (previous, current) {
+                    return current is HasResult;
+                  },
+                  builder: (context, state) {
+                    return Text(
+                      (state is HasResult) ? '${state.data.ech}%' : '0.00%',
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ],
             ),
