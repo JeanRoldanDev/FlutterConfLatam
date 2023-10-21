@@ -1,14 +1,8 @@
-// ignore_for_file: avoid_print
-
 import 'dart:async';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-// 60 - 100
-
-// 30 * 5 = 350
-// 7 puntos altos * 10 =
 class Cardiogram extends StatefulWidget {
   const Cardiogram({required this.dataStream, required this.size, super.key});
   final Stream<int> dataStream;
@@ -19,23 +13,28 @@ class Cardiogram extends StatefulWidget {
 }
 
 class _CardiogramState extends State<Cardiogram> {
-  List<int> dataPoints = [];
-  final _controller = ScrollController();
+  final limitCount = 150;
+  final sinPoints = <FlSpot>[];
+  double xValue = 0;
+  double step = 0.2;
 
   @override
   void initState() {
     widget.dataStream.listen((data) {
+      while (sinPoints.length >= limitCount) {
+        sinPoints.removeAt(0);
+      }
+
+      if (data == 0) {
+        sinPoints.clear();
+        return;
+      }
+
       setState(() {
-        dataPoints.add(data);
-        if (dataPoints.length > 150) {
-          dataPoints.removeAt(0);
-          _controller.animateTo(
-            _controller.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.linear,
-          );
-        }
+        sinPoints.add(FlSpot(xValue, data.toDouble()));
       });
+
+      xValue++;
     });
     super.initState();
   }
@@ -54,42 +53,59 @@ class _CardiogramState extends State<Cardiogram> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      controller: _controller,
-      itemCount: dataPoints.length,
-      itemBuilder: (context, index) {
-        return SizedBox(
-          width: widget.size.width,
-          height: widget.size.height,
-          child: LineChart(
-            LineChartData(
-              titlesData: const FlTitlesData(show: false),
-              borderData: FlBorderData(show: false),
-              gridData: grid,
-              lineTouchData: const LineTouchData(enabled: false),
-              minX: 0,
-              maxX: 149,
-              minY: 1700,
-              maxY: 2200,
-              lineBarsData: [
-                LineChartBarData(
-                  color: Colors.black,
-                  dotData: const FlDotData(show: false),
-                  spots: dataPoints.asMap().entries.map((entry) {
-                    return FlSpot(
-                      entry.key.toDouble(),
-                      entry.value.toDouble(),
-                    );
-                  }).toList(),
+    var minValue = 0.0;
+    var maxValue = 1.0;
+
+    if (sinPoints.isNotEmpty) {
+      final li = sinPoints.map<double>((e) => e.y).toList();
+      minValue =
+          li.reduce((value, element) => value < element ? value : element);
+      maxValue =
+          li.reduce((value, element) => value > element ? value : element);
+    }
+
+    return sinPoints.isNotEmpty
+        ? AspectRatio(
+            aspectRatio: 1.5,
+            child: LineChart(
+              LineChartData(
+                titlesData: const FlTitlesData(
+                  bottomTitles: AxisTitles(),
+                  topTitles: AxisTitles(),
                 ),
-              ],
+                gridData: grid,
+                lineTouchData: const LineTouchData(enabled: false),
+                borderData: FlBorderData(show: false),
+                minY: minValue,
+                maxY: maxValue.clamp(2000, 2500),
+                minX: sinPoints.first.x,
+                maxX: sinPoints.last.x,
+                extraLinesData: ExtraLinesData(
+                  horizontalLines: [
+                    HorizontalLine(y: 2200),
+                    HorizontalLine(y: 2100),
+                  ],
+                ),
+                lineBarsData: [
+                  LineChartBarData(
+                    color: Colors.black,
+                    dotData: const FlDotData(show: false),
+                    isCurved: true,
+                    curveSmoothness: 0.2,
+                    gradient: LinearGradient(
+                      colors: [Colors.red.withOpacity(0), Colors.black],
+                      stops: const [0.01, 0.1],
+                    ),
+                    barWidth: 3,
+                    spots: sinPoints,
+                  ),
+                ],
+              ),
+              // duration: const Duration(milliseconds: 120),
+              // curve: Curves.fastOutSlowIn,
             ),
-            duration: const Duration(milliseconds: 250),
-          ),
-        );
-      },
-    );
+          )
+        : const SizedBox.shrink();
   }
 
   FlTitlesData get titlesData2 => const FlTitlesData(
