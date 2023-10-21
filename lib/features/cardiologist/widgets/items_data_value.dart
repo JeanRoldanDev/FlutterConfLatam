@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterconflatam/features/cardiologist/bloc/cardiologist_bloc.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -69,16 +71,21 @@ class ItemBPM extends StatelessWidget {
                     color: Colors.blueGrey.shade800,
                   ),
                 ),
-                const Row(
-                  children: [
-                    Text(
-                      '120',
-                      style: TextStyle(
+                BlocBuilder<CardiologistBloc, CardiologistState>(
+                  buildWhen: (previous, current) {
+                    return current is HasResult;
+                  },
+                  builder: (context, state) {
+                    return Text(
+                      (state is HasResult)
+                          ? state.data.bpm.toInt().toString()
+                          : '0',
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ],
             ),
