@@ -11,4 +11,6 @@ final class UpdateResultEv extends CardiologistEvent {
   final CardioData data;
 }
 
+final class ViewChartEv extends CardiologistEvent {}
+
 final class ResetPulserEv extends CardiologistEvent {}
