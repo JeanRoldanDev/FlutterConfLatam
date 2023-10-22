@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterconflatam/app/style/ccolors.dart';
 import 'package:flutterconflatam/features/cardiologist/bloc/cardiologist_bloc.dart';
-import 'package:flutterconflatam/features/cardiologist/widgets/cardiogram.dart';
+import 'package:flutterconflatam/features/cardiologist/widgets/widgets.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class CardiogramPanel extends StatelessWidget {
@@ -16,38 +17,67 @@ class CardiogramPanel extends StatelessWidget {
           return SizedBox(
             width: box.maxWidth,
             height: box.maxHeight,
-            child: BlocBuilder<CardiologistBloc, CardiologistState>(
-              buildWhen: (previous, current) {
-                return current is Initial ||
-                    current is Loading ||
-                    current is Loaded ||
-                    current is Success;
-              },
-              builder: (context, state) {
-                if (state is Loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-
-                if (state is Loaded) {
-                  return const Center(
-                    child: Icon(
-                      Symbols.fingerprint_rounded,
-                      size: 80,
-                      color: Colors.red,
-                    ),
-                  );
-                }
-
-                if (state is Success) {
-                  return Cardiogram(
-                    dataStream: context.read<CardiologistBloc>().streamPulser,
-                    size: Size(box.maxWidth, box.maxHeight),
-                  );
-                }
-                return const SizedBox.shrink();
-              },
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                const Cardiogram(),
+                BlocBuilder<CardiologistBloc, CardiologistState>(
+                  buildWhen: (previous, current) {
+                    return current is Initial ||
+                        current is Loading ||
+                        current is Loaded ||
+                        current is Success;
+                  },
+                  builder: (context, state) {
+                    if (state is Loading) {
+                      return Container(
+                        color: CColors.background,
+                        alignment: Alignment.center,
+                        child: const Column(
+                          children: [
+                            CircularProgressIndicator(
+                              strokeWidth: 1,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Loading...!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                    if (state is Loaded) {
+                      return Container(
+                        color: CColors.background,
+                        alignment: Alignment.center,
+                        child: const Column(
+                          children: [
+                            Icon(
+                              Symbols.fingerprint_rounded,
+                              size: 80,
+                              color: Colors.red,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Place your finger',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                            StartCount()
+                          ],
+                        ),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                )
+              ],
             ),
           );
         },

@@ -40,7 +40,13 @@ class TitleCardio3DActions extends StatelessWidget {
                 onTap: () => reset(context),
                 size: 35,
               ),
-              const SizedBox(width: 30)
+              const SizedBox(width: 30),
+              CircularIcon(
+                icon: Symbols.abc,
+                onTap: () =>
+                    {context.read<CardiologistBloc>().add(ResetPulserEv())},
+                size: 35,
+              ),
             ],
           ),
           const PanelVisorHeart3D(),

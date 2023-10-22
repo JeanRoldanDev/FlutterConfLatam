@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterconflatam/features/cardiologist/bloc/cardiologist_bloc.dart';
 
 class Cardiogram extends StatefulWidget {
-  const Cardiogram({required this.dataStream, required this.size, super.key});
-  final Stream<int> dataStream;
-  final Size size;
+  const Cardiogram({
+    super.key,
+  });
 
   @override
   State<Cardiogram> createState() => _CardiogramState();
@@ -17,10 +19,13 @@ class _CardiogramState extends State<Cardiogram> {
   final sinPoints = <FlSpot>[];
   double xValue = 0;
   double step = 0.2;
+  late Stream<int> localDataStream;
+  StreamSubscription<int>? subscription;
 
   @override
   void initState() {
-    widget.dataStream.listen((data) {
+    final localDataStream = context.read<CardiologistBloc>().streamPulser;
+    subscription = localDataStream.listen((data) {
       while (sinPoints.length >= limitCount) {
         sinPoints.removeAt(0);
       }
@@ -37,6 +42,13 @@ class _CardiogramState extends State<Cardiogram> {
       xValue++;
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    subscription = null;
+    super.dispose();
   }
 
   final grid = FlGridData(
