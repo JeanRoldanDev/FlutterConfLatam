@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterconflatam/core/human_sdk/data/item_dental.dart';
+import 'package:flutterconflatam/features/dental/widgets/widgets.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -30,21 +31,11 @@ class ItemsTemp extends StatelessWidget {
                 return Item(
                   child: Row(
                     children: [
-                      Container(
-                        width: 60,
-                        padding: const EdgeInsets.symmetric(vertical: 7),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey.shade700,
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                        ),
-                        alignment: Alignment.center,
-                        child: Image.asset(
-                          tooth.piece.vestibular,
-                          fit: BoxFit.cover,
-                        ),
+                      ToohImg(
+                        tooth: tooth,
+                        onTap: () {
+                          print(tooth.piece.id);
+                        },
                       ),
                       Expanded(
                         child: Padding(
