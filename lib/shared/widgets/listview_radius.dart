@@ -13,12 +13,14 @@ class ListViewRadius extends StatelessWidget {
     required this.itemCount,
     required this.itemBuilder,
     this.colorItem = Colors.black,
+    this.physics,
     super.key,
   });
 
   final Color colorItem;
   final int itemCount;
   final Item Function(BuildContext, int) itemBuilder;
+  final ScrollPhysics? physics;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class ListViewRadius extends StatelessWidget {
 
     return ListView.builder(
       itemCount: list.length,
+      physics: physics,
       itemBuilder: (context, index) {
         return _RowItem(
           index: index,
