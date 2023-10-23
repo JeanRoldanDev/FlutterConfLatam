@@ -6,6 +6,7 @@ import 'dart:html' as html;
 
 class HumanUI {
   static const String modelDentalID = 'DentalModel';
+  static const String modelHeartID = 'HeartModel';
 
   static void setToken(String apiKey) {
     final meta = html.MetaElement()

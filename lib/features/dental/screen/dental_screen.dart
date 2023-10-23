@@ -19,7 +19,7 @@ class DentalScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MenuHeader(),
+            const MenuHeader(menuActive: 0),
             BlocBuilder<DentalBloc, DentalState>(
               buildWhen: (previous, current) {
                 return current is DentalLoading || current is DentalLoaded;
