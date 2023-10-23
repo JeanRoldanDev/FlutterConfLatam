@@ -32,10 +32,11 @@ class ItemsDataValue extends StatelessWidget {
             subText: 'Items',
             'Registers',
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 30),
           Expanded(
             child: ListViewRadius(
               itemCount: list.length,
+              physics: const NeverScrollableScrollPhysics(),
               colorItem: Colors.grey,
               itemBuilder: (context, index) {
                 return list[index];
@@ -81,7 +82,7 @@ class ItemBPM extends StatelessWidget {
                           ? state.data.bpm.toInt().toString()
                           : '0',
                       style: const TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w700,
                       ),
                     );
@@ -133,9 +134,11 @@ class ItemSPO extends StatelessWidget {
                   },
                   builder: (context, state) {
                     return Text(
-                      (state is HasResult) ? '${state.data.spo2}%' : '0.00%',
+                      (state is HasResult)
+                          ? '${state.data.spo2.toStringAsFixed(2)}%'
+                          : '0.00%',
                       style: const TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w700,
                       ),
                     );
@@ -185,9 +188,11 @@ class ItemFrequency extends StatelessWidget {
                   },
                   builder: (context, state) {
                     return Text(
-                      (state is HasResult) ? '${state.data.ech}%' : '0.00%',
+                      (state is HasResult)
+                          ? '${state.data.ech.toStringAsFixed(1)}%'
+                          : '0.00%',
                       style: const TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w700,
                       ),
                     );

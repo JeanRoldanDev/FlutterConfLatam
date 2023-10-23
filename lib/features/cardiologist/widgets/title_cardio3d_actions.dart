@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterconflatam/features/cardiologist/bloc/cardiologist_bloc.dart';
@@ -13,44 +15,40 @@ class TitleCardio3DActions extends StatelessWidget {
   }
 
   void reset(BuildContext context) {
-    context.read<CardiologistBloc>().add(ResetPulserEv());
+    html.window.location.reload();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Expanded(
-                child: LabelTitle(
-                  'Cardiologist',
-                  subText: 'Ckeck Your',
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Expanded(
+                  child: LabelTitle(
+                    'Cardiologist',
+                    subText: 'Ckeck Your',
+                  ),
                 ),
-              ),
-              CircularIcon(
-                icon: Symbols.pacemaker_rounded,
-                onTap: () => load(context),
-                size: 35,
-              ),
-              const SizedBox(width: 10),
-              CircularIcon(
-                icon: Symbols.relax_rounded,
-                onTap: () => reset(context),
-                size: 35,
-              ),
-              const SizedBox(width: 30),
-              CircularIcon(
-                icon: Symbols.abc,
-                onTap: () =>
-                    {context.read<CardiologistBloc>().add(ResetPulserEv())},
-                size: 35,
-              ),
-            ],
-          ),
-          const PanelVisorHeart3D(),
-        ],
+                CircularIcon(
+                  icon: Symbols.pacemaker_rounded,
+                  onTap: () => load(context),
+                  size: 35,
+                ),
+                const SizedBox(width: 10),
+                CircularIcon(
+                  icon: Symbols.relax_rounded,
+                  onTap: () => reset(context),
+                  size: 35,
+                ),
+              ],
+            ),
+            const PanelVisorHeart3D(),
+          ],
+        ),
       ),
     );
   }
