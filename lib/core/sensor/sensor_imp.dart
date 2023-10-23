@@ -9,7 +9,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class SensorImpl implements ISensor {
   late WebSocketChannel channel;
 
-  static const String ip = '192.168.1.104';
+  static const String ip = '192.168.43.83';
   static const String port = '81';
   static const int rangeInit = 1500;
   static const int rangeEnd = 3000;
@@ -82,7 +82,6 @@ class SensorImpl implements ISensor {
 
     var r1 = 0;
     final result = <double>[];
-
     for (final el in dataAnalisys) {
       if (el >= patronR) {
         ban = true;
@@ -115,10 +114,13 @@ class SensorImpl implements ISensor {
       }
     }
 
+    final spo2 = ((110.0 - 0.44 * media) / 100).clamp(0, 1).toDouble();
+    final ech = (media + (spo2 * 100)) / 2;
+
     return CardioData(
       bpm: double.parse(media.toStringAsFixed(2)),
-      spo2: 0,
-      ech: 0,
+      spo2: spo2,
+      ech: ech,
     );
   }
 }
