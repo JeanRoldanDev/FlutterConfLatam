@@ -18,7 +18,6 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
     required this.humanSDK,
   }) : super(Initial()) {
     on<ReadPulserEv>(_onReadPulser);
-    on<ResetPulserEv>(_onResetPulser);
     on<UpdateResultEv>(_onUpdateResult);
     on<ViewChartEv>(_onViewChart);
   }
@@ -30,19 +29,20 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
   Stream<int> get streamPulser => _cardioStreamCtrl.stream;
   DateTime _futureTime = DateTime.now();
 
-  Future<void> analisis(int data) async {
+  bool viewDataResulta = false;
+
+  Future<void> analisis() async {
     if (sensor.inRange()) {
-      await humanSDK.play();
       final now = DateTime.now();
       final date1 = now.millisecondsSinceEpoch ~/ 1000;
       final date2 = _futureTime.millisecondsSinceEpoch ~/ 1000;
       if (date1 >= date2) {
         _futureTime = now.add(const Duration(seconds: 2));
         final cardioData = sensor.getAnalisys();
-        add(UpdateResultEv(cardioData));
-        if (kDebugMode) {
-          print('YA SE PUEDE ANALIZAR LA DATA ${cardioData.bpm}');
+        if (viewDataResulta) {
+          add(UpdateResultEv(cardioData));
         }
+        await humanSDK.play();
       }
     }
   }
@@ -65,23 +65,21 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
     sensor.pulser().listen((dat) {
       if (dat.event == 'Pulser') {
         _cardioStreamCtrl.add(dat.value);
-        analisis(dat.value);
+        if (dat.value == 0) {
+          humanSDK.pause();
+          add(UpdateResultEv(CardioData(bpm: 0, spo2: 0, ech: 0)));
+        }
+        analisis();
       }
     });
   }
 
   Future<void> _onViewChart(ViewChartEv ev, ECardo emit) async {
     emit(Success());
+    viewDataResulta = true;
   }
 
   Future<void> _onUpdateResult(UpdateResultEv ev, ECardo emit) async {
     emit(HasResult(ev.data));
-  }
-
-  Future<void> _onResetPulser(ResetPulserEv ev, ECardo emit) async {
-    await humanSDK.play();
-    await humanSDK.speed(0.5);
-    await Future<void>.delayed(const Duration(seconds: 5));
-    await humanSDK.pause();
   }
 }
