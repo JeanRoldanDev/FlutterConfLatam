@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterconflatam/app/env.dart';
+import 'package:flutterconflatam/app/config/env.dart';
 import 'package:flutterconflatam/core/human_sdk/human.dart';
 import 'package:flutterconflatam/core/service/service.dart';
 
@@ -19,12 +19,17 @@ class DentalBloc extends Bloc<DentalEvent, DentalState> {
     on<XRay3DEv>(_onXRay3D);
     on<Select3DEv>(_onSelect3D);
     on<DelectEv>(_onDelect);
+    on<SelectItemListEv>(_onSelectItemList);
   }
 
   final IHuman humanSDK;
-  final Services services;
+  final IService services;
 
   String? toothSelect;
+
+  Future<void> _onSelectItemList(SelectItemListEv ev, DEmit emit) async {
+    await humanSDK.onSelectItemList(ev.item.piece.id);
+  }
 
   Future<void> _onLoadData(LoadDataEv ev, DEmit emit) async {
     emit(const DentalLoading([]));

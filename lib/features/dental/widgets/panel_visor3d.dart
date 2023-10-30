@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterconflatam/app/env.dart';
+import 'package:flutterconflatam/app/config/env.dart';
 import 'package:flutterconflatam/app/style/ccolors.dart';
 import 'package:flutterconflatam/core/human_sdk/human_ui.dart';
 import 'package:flutterconflatam/features/dental/bloc/dental_bloc.dart';
