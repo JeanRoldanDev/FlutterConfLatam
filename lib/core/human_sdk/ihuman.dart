@@ -11,4 +11,6 @@ abstract class IHuman {
   Future<void> play();
   Future<void> pause();
   Future<void> speed(double value);
+
+  Future<void> onSelectItemList(String objectId);
 }

@@ -36,6 +36,7 @@ class HumanoImpl implements IHuman {
         final key = data.keys.first;
         final value = data[key] as bool;
         final resp = Object3D(id: key, status: value);
+        print(resp.id);
         _ctrlSelect.sink.add(resp);
       }
     ]);
@@ -100,5 +101,20 @@ class HumanoImpl implements IHuman {
       final jsonJS = js.JsObject.jsify(dartObject);
       _humanJS!.callMethod('send', ['timeline.set', jsonJS]);
     });
+  }
+
+  @override
+  Future<void> onSelectItemList(String objectId) async {
+    final dartObject = <String, dynamic>{
+      'objectId': objectId,
+      'tintColor': <int>[0, 1, 0],
+      'brightness': 0.1,
+      'saturation': -0.5,
+      'contrast': 0.5,
+      'opacity': 1.0,
+    };
+
+    final jsonJS = js.JsObject.jsify(dartObject);
+    await _humanJS!.callMethod('send', ['scene.colorObject', jsonJS]);
   }
 }
