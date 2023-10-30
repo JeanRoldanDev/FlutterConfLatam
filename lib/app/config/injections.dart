@@ -5,6 +5,6 @@ class Injections {
   static List<RepositoryProvider<dynamic>> get all => [
         RepositoryProvider<IHuman>(create: (_) => HumanoImpl()),
         RepositoryProvider<ISensor>(create: (_) => SensorImpl()),
-        RepositoryProvider<Services>(create: (_) => Services()),
+        RepositoryProvider<IService>(create: (_) => ServiceImpl()),
       ];
 }
