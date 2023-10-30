@@ -28,10 +28,10 @@ class _Visor3DServerState extends State<Visor3DServer> {
 
   void _init() {
     HumanUI.setToken(widget.apiKey);
-    final ss = HumanUI.createView(widget.id);
+    final divElement = HumanUI.createView(widget.id);
     ui.platformViewRegistry.registerViewFactory(
       'visorView3DModel',
-      (_) => ss,
+      (_) => divElement,
     );
   }
 
