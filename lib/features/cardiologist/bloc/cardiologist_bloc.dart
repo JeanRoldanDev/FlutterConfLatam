@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterconflatam/app/env.dart';
+import 'package:flutterconflatam/app/config/env.dart';
 import 'package:flutterconflatam/core/human_sdk/human.dart';
-import 'package:flutterconflatam/core/sensor/cardio_result.dart';
-import 'package:flutterconflatam/core/sensor/isensor.dart';
+import 'package:flutterconflatam/core/sensor/sensor.dart';
 
 part 'cardiologist_event.dart';
 part 'cardiologist_state.dart';

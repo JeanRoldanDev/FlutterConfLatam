@@ -1,7 +1,7 @@
 // ignore_for_file: use_colored_box
 
 import 'package:flutter/material.dart';
-import 'package:flutterconflatam/app/env.dart';
+import 'package:flutterconflatam/app/config/env.dart';
 import 'package:flutterconflatam/core/human_sdk/human_ui.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 
