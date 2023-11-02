@@ -17,9 +17,5 @@ This repo is made with love, since not only was I there as an organizer, I was a
 
 ![img7](readme/7.jpeg)
 
-<div style="text-align:center;">
-   <img src="readme/logo_color.jpeg" alt="drawing" style="width:200px;"/>
-</div>
-
 
 
