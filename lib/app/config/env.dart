@@ -13,7 +13,6 @@ class Env {
 
   static Env? _instance;
 
-  // ignore: prefer_constructors_over_static_methods
   static Env get instance {
     if (_instance != null) return _instance!;
     _instance = Env._privateConstructor(

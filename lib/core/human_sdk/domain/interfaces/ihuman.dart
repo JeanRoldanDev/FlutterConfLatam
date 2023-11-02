@@ -1,4 +1,4 @@
-import 'package:flutterconflatam/core/human_sdk/models/object3d.dart';
+import 'package:flutterconflatam/core/human_sdk/domain/models/object3d.dart';
 
 abstract class IHuman {
   Future<void> create(String id, String url);
@@ -7,8 +7,8 @@ abstract class IHuman {
   Future<void> setEfectSelect(bool status);
   Future<void> setObjectData(String objectId);
   Future<void> delObject(String objectId);
-
   Future<void> play();
   Future<void> pause();
   Future<void> speed(double value);
+  Future<void> onSelectItemList(String objectId);
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterconflatam/app/app.dart';
+import 'package:flutterconflatam/features/cardiologist/cardiologist_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,16 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Conf 2023',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Production Mode'),
-        ),
+    return MultiRepositoryProvider(
+      providers: Injections.all,
+      child: MaterialApp(
+        title: 'Flutter Conf 2023',
+        theme: ThemeApp.getDefault,
+        debugShowCheckedModeBanner: false,
+        home: const CardiologistPage(),
       ),
     );
   }

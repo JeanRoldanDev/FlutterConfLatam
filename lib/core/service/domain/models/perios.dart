@@ -1,4 +1,4 @@
-import 'package:flutterconflatam/core/human_sdk/models/perio_dental.dart';
+import 'package:flutterconflatam/core/service/domain/models/models.dart';
 
 class Perios {
   static const p1 = PerioDental(

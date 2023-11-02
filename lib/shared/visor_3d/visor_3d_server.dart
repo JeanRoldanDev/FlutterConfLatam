@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterconflatam/app/style/ccolors.dart';
-import 'package:flutterconflatam/core/human_sdk/human_ui.dart';
+import 'package:flutterconflatam/core/core.dart';
 import 'package:flutterconflatam/shared/visor_3d/shims/dart_ui.dart' as ui;
 
 class Visor3DServer extends StatefulWidget {
@@ -28,10 +28,10 @@ class _Visor3DServerState extends State<Visor3DServer> {
 
   void _init() {
     HumanUI.setToken(widget.apiKey);
-    final ss = HumanUI.createView(widget.id);
+    final divElement = HumanUI.createView(widget.id);
     ui.platformViewRegistry.registerViewFactory(
-      'visorView3DModel',
-      (_) => ss,
+      'visorView3DModel${widget.key}',
+      (_) => divElement,
     );
   }
 
@@ -45,7 +45,7 @@ class _Visor3DServerState extends State<Visor3DServer> {
             width: 2,
           ),
         ),
-        child: const HtmlElementView(viewType: 'visorView3DModel'),
+        child: HtmlElementView(viewType: 'visorView3DModel${widget.key}'),
       ),
     );
   }

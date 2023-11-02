@@ -1,4 +1,4 @@
-import 'package:flutterconflatam/core/human_sdk/models/piece_dental.dart';
+import 'package:flutterconflatam/core/service/domain/models/models.dart';
 
 class Piceses {
   static const _path = 'assets/img/';
@@ -73,6 +73,15 @@ class Piceses {
     cod: 11,
     name: 'Segundo PreMolar',
     position: 'Incisivo Central',
+    vestibular: '$_path/sup_frontal/1.png',
+    lingual: '$_path/sup_lingual/1.png',
+    incisal: '',
+  );
+  static const p21 = PieceDental(
+    id: 'SIN_ID',
+    cod: 21,
+    name: 'Segundo PreMolar',
+    position: 'Superior Derecho',
     vestibular: '$_path/sup_frontal/1.png',
     lingual: '$_path/sup_lingual/1.png',
     incisal: '',

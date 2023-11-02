@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterconflatam/core/human_sdk/human.dart';
+import 'package:flutterconflatam/core/core.dart';
 
 class ToohImg extends StatelessWidget {
   const ToohImg({

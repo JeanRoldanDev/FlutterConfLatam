@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutterconflatam/core/human_sdk/data/item_dental.dart';
+import 'package:flutterconflatam/core/service/domain/models/item_dental.dart';
 import 'package:flutterconflatam/features/dental/widgets/widgets.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class ItemsTemp extends StatelessWidget {
-  const ItemsTemp(
-    this.itemsDental, {
+  const ItemsTemp({
+    required this.itemsDental,
+    required this.onTapItem,
     super.key,
   });
 
   final List<ItemDental> itemsDental;
+  final void Function(ItemDental tooth) onTapItem;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ItemsTemp extends StatelessWidget {
         children: [
           const LabelTitle(
             subText: 'Items',
-            'Registros',
+            'Registers',
           ),
           Expanded(
             child: ListViewRadius(
@@ -33,9 +35,7 @@ class ItemsTemp extends StatelessWidget {
                     children: [
                       ToohImg(
                         tooth: tooth,
-                        onTap: () {
-                          print(tooth.piece.id);
-                        },
+                        onTap: () => onTapItem(tooth),
                       ),
                       Expanded(
                         child: Padding(

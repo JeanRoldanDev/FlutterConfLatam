@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutterconflatam/core/sensor/cardio_result.dart';
-import 'package:flutterconflatam/core/sensor/event_data.dart';
-import 'package:flutterconflatam/core/sensor/isensor.dart';
+import 'package:flutterconflatam/core/sensor/domain/interfaces/isensor.dart';
+import 'package:flutterconflatam/core/sensor/domain/models/cardio_result.dart';
+import 'package:flutterconflatam/core/sensor/domain/models/event_data.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class SensorImpl implements ISensor {
   late WebSocketChannel channel;
 
-  static const String ip = '192.168.43.83';
+  static const String ip = '172.20.10.3';
   static const String port = '81';
   static const int rangeInit = 1500;
   static const int rangeEnd = 3000;

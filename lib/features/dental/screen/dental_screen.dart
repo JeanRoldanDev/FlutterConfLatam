@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterconflatam/app/style/ccolors.dart';
+import 'package:flutterconflatam/core/core.dart';
 import 'package:flutterconflatam/features/dental/bloc/dental_bloc.dart';
 import 'package:flutterconflatam/features/dental/widgets/widgets.dart';
 import 'package:flutterconflatam/shared/shared.dart';
 
 class DentalScreen extends StatelessWidget {
   const DentalScreen({super.key});
+
+  void onTapItem(BuildContext context, ItemDental value) {
+    context.read<DentalBloc>().add(SelectItemListEv(value));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,11 @@ class DentalScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       const PanelVisor3D(),
-                      ItemsTemp(state.data),
+                      ItemsTemp(
+                        itemsDental: state.data,
+                        onTapItem: (itemDental) =>
+                            onTapItem(context, itemDental),
+                      ),
                     ],
                   ),
                 );

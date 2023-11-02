@@ -1,7 +1,4 @@
-import 'package:flutterconflatam/core/human_sdk/data/perios.dart';
-import 'package:flutterconflatam/core/human_sdk/data/pieces.dart';
-import 'package:flutterconflatam/core/human_sdk/models/perio_dental.dart';
-import 'package:flutterconflatam/core/human_sdk/models/piece_dental.dart';
+import 'package:flutterconflatam/core/service/domain/models/models.dart';
 
 class ItemDental {
   const ItemDental({required this.piece, this.perio});

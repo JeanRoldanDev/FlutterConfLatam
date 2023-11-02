@@ -1,16 +1,21 @@
-# flutterconflatam
+![Banner](readme/topbanner.png)
+![Gorditos y bonitos](readme/1.jpeg)
+## 😬 Resumen:
 
-A new Flutter project.
+I feel proud to have been part of the organization and to carry out this great event, we never thought we would have such a big, huge reception, the entire LATAM community always dreamed of having an event of this level and this time we were able to do it  make it come true...!
 
-## Getting Started
+![img2](readme/2.jpeg)
 
-This project is a starting point for a Flutter application.
+This repo is made with love, since not only was I there as an organizer, I was also at the same time as a speaker, leaving a grain of sand for the community by imparting experiences and knowledge, thank you very much to everyone who attended.
 
-A few resources to get you started if this is your first Flutter project:
+![img3](readme/3.jpeg)
+![img4](readme/4.jpeg)
+![img5](readme/5.jpeg)
+![img6](readme/6.jpeg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# 🎉 See you soon 🎉, Dartians 💙
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![img7](readme/7.jpeg)
+
+
+

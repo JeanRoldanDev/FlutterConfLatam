@@ -1,5 +1,4 @@
-export 'data/data.dart';
-export 'human_impl.dart';
-export 'human_ui.dart';
-export 'ihuman.dart';
-export 'models/models.dart';
+export 'application/human.impl.dart';
+export 'domain/interfaces/ihuman.dart';
+export 'domain/models/object3d.dart';
+export 'domain/ui/human_ui.dart';
