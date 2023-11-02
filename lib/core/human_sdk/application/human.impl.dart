@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:js' as js;
 
-import 'package:flutterconflatam/core/human_sdk/human_ui.dart';
-import 'package:flutterconflatam/core/human_sdk/ihuman.dart';
-import 'package:flutterconflatam/core/human_sdk/models/models.dart';
+import 'package:flutterconflatam/core/human_sdk/domain/interfaces/ihuman.dart';
+import 'package:flutterconflatam/core/human_sdk/domain/models/object3d.dart';
+import 'package:flutterconflatam/core/human_sdk/domain/ui/human_ui.dart';
 
 class HumanoImpl implements IHuman {
   late js.JsObject? _humanJS;
