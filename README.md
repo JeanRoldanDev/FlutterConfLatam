@@ -1,16 +1,28 @@
-# flutterconflatam
+<style>
+    @font-face {
+    font-family: 'Poppins'; 
+    src: url('/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype'), 
+         url('/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype'); 
+    }
+    .topBanner{
+        position: relative;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .topBanner h1{
+        position: absolute;
+        font-family: 'Poppins';
+        font-weight: bold;
+        font-size: 40px;
+    }
+    .topBanner img {
+        width: 100%;
+    }
+</style>
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div class='topBanner'>
+    <img src="readme/topbanner.jpg" alt="Top Banner Image"/>
+    <h1>FlutterConfLatam2023<h1>
+</div>
