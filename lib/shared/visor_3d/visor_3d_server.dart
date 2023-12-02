@@ -1,7 +1,9 @@
+// import 'package:flutterconflatam/shared/visor_3d/shims/dart_ui.dart' as ui;
+import 'dart:ui_web' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutterconflatam/app/style/ccolors.dart';
 import 'package:flutterconflatam/core/core.dart';
-import 'package:flutterconflatam/shared/visor_3d/shims/dart_ui.dart' as ui;
 
 class Visor3DServer extends StatefulWidget {
   const Visor3DServer({

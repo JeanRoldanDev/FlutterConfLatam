@@ -1,24 +1,34 @@
 part of 'cardiologist_bloc.dart';
 
 @immutable
-sealed class CardiologistState {}
+sealed class CardiologistState {
+  const CardiologistState({required this.cardioData});
 
-final class Initial extends CardiologistState {}
+  final CardioData cardioData;
+}
 
-final class Loading extends CardiologistState {}
+final class Initial extends CardiologistState {
+  const Initial() : super(cardioData: CardioData.zero);
+}
 
-final class Loaded extends CardiologistState {}
+final class Loading extends CardiologistState {
+  const Loading() : super(cardioData: CardioData.zero);
+}
 
-final class Success extends CardiologistState {}
+final class Loaded extends CardiologistState {
+  const Loaded() : super(cardioData: CardioData.zero);
+}
+
+final class Success extends CardiologistState {
+  const Success() : super(cardioData: CardioData.zero);
+}
 
 final class HasResult extends CardiologistState {
-  HasResult(this.data);
-
-  final CardioData data;
+  const HasResult({required super.cardioData});
 }
 
 final class Error extends CardiologistState {
-  Error(this.msg);
+  const Error(this.msg) : super(cardioData: CardioData.zero);
 
   final String msg;
 }

@@ -41,7 +41,7 @@ class MenuHeader extends StatelessWidget {
                 icon: CupertinoIcons.bell_fill,
               ),
             ],
-          )
+          ),
         ],
       ),
     );

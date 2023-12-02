@@ -45,7 +45,7 @@ class CardiogramPanel extends StatelessWidget {
                                 color: Colors.white,
                                 fontSize: 20,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );
@@ -69,14 +69,14 @@ class CardiogramPanel extends StatelessWidget {
                                 fontSize: 20,
                               ),
                             ),
-                            StartCount()
+                            StartCount(),
                           ],
                         ),
                       );
                     }
                     return const SizedBox.shrink();
                   },
-                )
+                ),
               ],
             ),
           );

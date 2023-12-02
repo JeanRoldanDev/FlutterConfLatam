@@ -110,7 +110,7 @@ class _RowItem extends StatelessWidget {
                     color: color,
                     nextItemPalette: nextItemPalette,
                   ),
-                )
+                ),
             ],
           ),
         ],

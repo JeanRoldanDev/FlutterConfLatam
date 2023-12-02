@@ -15,7 +15,7 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
   CardiologistBloc({
     required this.sensor,
     required this.humanSDK,
-  }) : super(Initial()) {
+  }) : super(const Initial()) {
     on<ReadPulserEv>(_onReadPulser);
     on<UpdateResultEv>(_onUpdateResult);
     on<ViewChartEv>(_onViewChart);
@@ -38,20 +38,23 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
       if (date1 >= date2) {
         _futureTime = now.add(const Duration(seconds: 2));
         final cardioData = sensor.getAnalisys();
-        if (viewDataResulta) {
+        if (viewDataResulta & (cardioData != CardioData.zero)) {
           add(UpdateResultEv(cardioData));
+          await humanSDK.play();
+        } else {
+          add(UpdateResultEv(CardioData.zero));
+          await humanSDK.pause();
         }
-        await humanSDK.play();
       }
     }
   }
 
   Future<void> _onReadPulser(ReadPulserEv ev, ECardo emit) async {
     try {
-      emit(Loading());
-      await sensor.connect();
+      emit(const Loading());
+      await sensor.connect(ip: '192.168.43.83', port: '81');
     } catch (e) {
-      emit(Error('Error al conectar'));
+      emit(const Error('Error al conectar'));
       return;
     }
 
@@ -59,14 +62,13 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
       HumanUI.modelHeartID,
       Env.instance.serverView3dHeartURL,
     );
-    await Future<void>.delayed(const Duration(seconds: 2));
-    emit(Loaded());
+    emit(const Loaded());
     sensor.pulser().listen((dat) {
       if (dat.event == 'Pulser') {
         _cardioStreamCtrl.add(dat.value);
         if (dat.value == 0) {
+          add(UpdateResultEv(CardioData.zero));
           humanSDK.pause();
-          add(UpdateResultEv(CardioData(bpm: 0, spo2: 0, ech: 0)));
         }
         analisis();
       }
@@ -74,11 +76,11 @@ class CardiologistBloc extends Bloc<CardiologistEvent, CardiologistState> {
   }
 
   Future<void> _onViewChart(ViewChartEv ev, ECardo emit) async {
-    emit(Success());
+    emit(const Success());
     viewDataResulta = true;
   }
 
   Future<void> _onUpdateResult(UpdateResultEv ev, ECardo emit) async {
-    emit(HasResult(ev.data));
+    emit(HasResult(cardioData: ev.data));
   }
 }

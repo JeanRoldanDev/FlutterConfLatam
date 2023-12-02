@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutterconflatam/core/service/domain/models/models.dart';
 
-class ItemDental {
+class ItemDental extends Equatable {
   const ItemDental({required this.piece, this.perio});
 
   final PieceDental piece;
@@ -35,4 +36,7 @@ class ItemDental {
       piece: Piceses.p11,
     ),
   ];
+
+  @override
+  List<Object?> get props => [piece, perio];
 }

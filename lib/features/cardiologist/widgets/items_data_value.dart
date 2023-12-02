@@ -29,7 +29,7 @@ class ItemsDataValue extends StatelessWidget {
       child: Column(
         children: [
           const LabelTitle(
-            subText: 'Items',
+            subText: 'Data',
             'Registers',
           ),
           const SizedBox(height: 30),
@@ -79,7 +79,7 @@ class ItemBPM extends StatelessWidget {
                   builder: (context, state) {
                     return Text(
                       (state is HasResult)
-                          ? state.data.bpm.toInt().toString()
+                          ? state.cardioData.bpm.toInt().toString()
                           : '0',
                       style: const TextStyle(
                         fontSize: 25,
@@ -98,7 +98,7 @@ class ItemBPM extends StatelessWidget {
                 size: 70,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -135,7 +135,7 @@ class ItemSPO extends StatelessWidget {
                   builder: (context, state) {
                     return Text(
                       (state is HasResult)
-                          ? '${state.data.spo2.toStringAsFixed(2)}%'
+                          ? '${state.cardioData.spo2.toStringAsFixed(2)}%'
                           : '0.00%',
                       style: const TextStyle(
                         fontSize: 25,
@@ -154,7 +154,7 @@ class ItemSPO extends StatelessWidget {
                 size: 75,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -189,7 +189,7 @@ class ItemFrequency extends StatelessWidget {
                   builder: (context, state) {
                     return Text(
                       (state is HasResult)
-                          ? '${state.data.ech.toStringAsFixed(1)}%'
+                          ? '${state.cardioData.ech.toStringAsFixed(1)}%'
                           : '0.00%',
                       style: const TextStyle(
                         fontSize: 25,
@@ -208,7 +208,7 @@ class ItemFrequency extends StatelessWidget {
                 size: 75,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:flutterconflatam/core/service/domain/models/models.dart';
 import 'package:flutterconflatam/core/service/service.dart';
 
 class ServiceImpl implements IService {

@@ -71,7 +71,7 @@ class ItemsTemp extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

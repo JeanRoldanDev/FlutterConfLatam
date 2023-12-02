@@ -48,7 +48,7 @@ class DentalScreen extends StatelessWidget {
                   ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),

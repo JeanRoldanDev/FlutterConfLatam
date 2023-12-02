@@ -1,5 +1,7 @@
-class EventData {
-  EventData({required this.event, required this.value});
+import 'package:equatable/equatable.dart';
+
+class EventData extends Equatable {
+  const EventData({required this.event, required this.value});
 
   factory EventData.fromJson(Map<String, dynamic> json) {
     return EventData(
@@ -10,4 +12,7 @@ class EventData {
 
   final String event;
   final int value;
+
+  @override
+  List<Object> get props => [event, value];
 }
