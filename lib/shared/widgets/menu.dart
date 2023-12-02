@@ -65,7 +65,7 @@ class _MenuState extends State<Menu> {
                     child: widget.items[x],
                   ),
                 ),
-              )
+              ),
             ]
           else
             for (int x = 0; x < widget.items.length; x++) ...[
@@ -84,8 +84,8 @@ class _MenuState extends State<Menu> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: widget.items[x],
                 ),
-              )
-            ]
+              ),
+            ],
         ],
       ),
     );
