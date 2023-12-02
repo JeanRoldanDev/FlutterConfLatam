@@ -1,4 +1,6 @@
-class PieceDental {
+import 'package:equatable/equatable.dart';
+
+class PieceDental extends Equatable {
   const PieceDental({
     required this.id,
     required this.cod,
@@ -16,4 +18,15 @@ class PieceDental {
   final String vestibular;
   final String lingual;
   final String incisal;
+
+  @override
+  List<Object> get props => [
+        id,
+        cod,
+        name,
+        position,
+        vestibular,
+        lingual,
+        incisal,
+      ];
 }
