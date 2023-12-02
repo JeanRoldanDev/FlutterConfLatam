@@ -36,7 +36,6 @@ class HumanoImpl implements IHuman {
         final key = data.keys.first;
         final value = data[key] as bool;
         final resp = Object3D(id: key, status: value);
-        print(resp.id);
         _ctrlSelect.sink.add(resp);
       }
     ]);

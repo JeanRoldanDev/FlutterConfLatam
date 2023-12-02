@@ -9,8 +9,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class SensorImpl implements ISensor {
   late WebSocketChannel channel;
 
-  static const String ip = '172.20.10.3';
-  static const String port = '81';
   static const int rangeInit = 1500;
   static const int rangeEnd = 3000;
   static const int patronR = 2000;
@@ -18,7 +16,7 @@ class SensorImpl implements ISensor {
   final dataAnalisys = <int>[];
 
   @override
-  Future<void> connect() async {
+  Future<void> connect({required String ip, required String port}) async {
     try {
       if (kDebugMode) {
         print('Loading');
@@ -114,6 +112,7 @@ class SensorImpl implements ISensor {
       }
     }
 
+    if (media == 0) return CardioData.zero;
     final spo2 = ((110.0 - 0.44 * media) / 100).clamp(0, 1).toDouble();
     final ech = (media + (spo2 * 100)) / 2;
 
